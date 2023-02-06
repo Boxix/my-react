@@ -20,16 +20,12 @@ describe('TopNav test', () => {
       useNavigate: () => (vi.fn()),
     }))
     providerProps = {
-      user: {
-        sid: 1,
-        username: 'cja',
-        email: 'cja@cja.com'
-      },
-      signIn: vi.fn((user) => {
-        providerProps.user = user
+      token: 'cja',
+      signIn: vi.fn((token) => {
+        providerProps.token = token
       }),
       signOut: vi.fn(() => {
-        providerProps.user = null
+        providerProps.token = null
       }),
     }
   })

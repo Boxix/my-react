@@ -1,14 +1,10 @@
-import { ReactNode, createContext, useState } from 'react'
+import { ReactNode, createContext, useState, useEffect } from 'react'
 
-export type TUser = {
-  sid: number
-  username: string
-  email: string
-}
+export type TUserToken = string
 
 export interface IAuthContext {
-  user: TUser | null
-  signIn: (user: TUser, cb?: VoidFunction) => void
+  token: TUserToken | null
+  signIn: (token: TUserToken, cb?: VoidFunction) => void
   signOut: (cb?: VoidFunction) => void
 }
 
@@ -27,22 +23,29 @@ const provider = {
 }
 
 const AuthProvider = ({ children }: { children: ReactNode }) => {
-  const [user, setUser] = useState<TUser | null>(null)
-  let signIn = (newUser: TUser, cb?: VoidFunction) => {
+  const [token, setToken] = useState<TUserToken | null>(null)
+  let signIn = (token: TUserToken, cb?: VoidFunction) => {
     return provider.signIn(() => {
-      setUser(newUser)
+      setToken(token)
       cb?.()
     })
   }
   let signOut = (cb?: VoidFunction) => {
     return provider.signOut(() => {
-      setUser(null)
+      setToken(null)
       cb?.()
     })
   }
 
+  useEffect(() => {
+    const token = localStorage.getItem('token')
+    if (token) {
+      setToken('cja')
+    }
+  }, [])
+
   return (
-    <AuthContext.Provider value={{ user, signIn, signOut, }}>
+    <AuthContext.Provider value={{ token: token, signIn, signOut, }}>
       {children}
     </AuthContext.Provider>
   );

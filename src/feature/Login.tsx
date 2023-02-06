@@ -5,14 +5,16 @@ import { LockOutlined, UserOutlined } from '@ant-design/icons'
 import { AuthContext } from '../context/AuthProvider'
 
 const useAuth = () => useContext(AuthContext)
+const TOKEN = '156491bb-efeb-4092-8245-63fb5ad22213'
 
 function Login() {
   const auth = useAuth()
   const navigate = useNavigate()
-  const location = useLocation()
 
   const handleFinished = (values: Record<string, unknown>) => {
-    localStorage.setItem('token', '1')
+    if (values.remember) {
+      localStorage.setItem('token', TOKEN)
+    }
 
     notification.success({
       message: '操作成功',
@@ -20,11 +22,7 @@ function Login() {
       duration: 1,
     })
     setTimeout(() => {
-      auth?.signIn({
-        sid: 1,
-        username: values.username as string,
-        email: 'test@test.com',
-      }, () => {
+      auth?.signIn(TOKEN, () => {
         navigate('/', { replace: true })
       })
     }, 1000)

@@ -3,7 +3,7 @@ import AuthProvider, { AuthContext, IAuthContext } from './AuthProvider'
 import { useContext } from 'react'
 
 const CustomTest = () => {
-  const { user, signIn, signOut } = useContext(AuthContext) as IAuthContext
+  const { token: user, signIn, signOut } = useContext(AuthContext) as IAuthContext
 
   return (
     <div>

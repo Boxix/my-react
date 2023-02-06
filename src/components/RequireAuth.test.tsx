@@ -1,5 +1,4 @@
 import { render, screen } from '@testing-library/react'
-import { ReactNode } from 'react'
 import { BrowserRouter, useLocation } from 'react-router-dom'
 import { AuthContext, IAuthContext } from '../context/AuthProvider'
 import RequireAuth from './RequireAuth'
@@ -30,7 +29,7 @@ describe('test for RequireAuth', () => {
     customRender(<LocationDisplay />, {
       providerProps: {
         ...providerProps,
-        user: null
+        token: null
       },
       route: '/'
     })
@@ -41,11 +40,7 @@ describe('test for RequireAuth', () => {
     customRender(<LocationDisplay />, {
       providerProps: {
         ...providerProps,
-        user: {
-          username: '1',
-          sid: 1,
-          email: '1',
-        },
+        token: '1',
       },
       route: '/path-of-any'
     })

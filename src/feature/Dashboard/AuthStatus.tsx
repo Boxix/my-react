@@ -5,12 +5,12 @@ const useAuth = () => useContext(AuthContext)
 
 const AuthStatus = () => {
   let auth = useAuth()
-  let { user } = auth!
+  let { token } = auth!
 
-  if (!user) return <p>没有登录</p>
+  if (!token) return <p>没有登录</p>
   return (
     <>
-      <p>你好 {user.username}! </p>
+      <p>你好! </p>
     </>
   )
 }
