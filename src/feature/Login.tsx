@@ -3,17 +3,18 @@ import { Location, useLocation, useNavigate } from 'react-router-dom'
 import { Button, Checkbox, Form, Input, notification } from 'antd'
 import { LockOutlined, UserOutlined } from '@ant-design/icons'
 import { AuthContext } from '../context/AuthProvider'
+import { getToken } from '../utils/auth/get-token'
 
 const useAuth = () => useContext(AuthContext)
-const TOKEN = '156491bb-efeb-4092-8245-63fb5ad22213'
 
 function Login() {
   const auth = useAuth()
   const navigate = useNavigate()
 
-  const handleFinished = (values: Record<string, unknown>) => {
+  const handleFinished = async (values: Record<string, unknown>) => {
+    const token = await getToken()
     if (values.remember) {
-      localStorage.setItem('token', TOKEN)
+      localStorage.setItem('token', token)
     }
 
     notification.success({
@@ -22,7 +23,7 @@ function Login() {
       duration: 1,
     })
     setTimeout(() => {
-      auth?.signIn(TOKEN, () => {
+      auth?.signIn(token, () => {
         navigate('/', { replace: true })
       })
     }, 1000)

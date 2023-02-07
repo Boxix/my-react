@@ -23,7 +23,8 @@ const provider = {
 }
 
 const AuthProvider = ({ children }: { children: ReactNode }) => {
-  const [token, setToken] = useState<TUserToken | null>(null)
+  const localToken = localStorage.getItem('token')
+  const [token, setToken] = useState<TUserToken | null>(localToken)
   let signIn = (token: TUserToken, cb?: VoidFunction) => {
     return provider.signIn(() => {
       setToken(token)
@@ -36,13 +37,6 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
       cb?.()
     })
   }
-
-  useEffect(() => {
-    const token = localStorage.getItem('token')
-    if (token) {
-      setToken('cja')
-    }
-  }, [])
 
   return (
     <AuthContext.Provider value={{ token: token, signIn, signOut, }}>
