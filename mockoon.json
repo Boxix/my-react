@@ -1,0 +1,125 @@
+{
+  "uuid": "d1d83e54-2902-4289-955d-c742f220ac7e",
+  "lastMigration": 25,
+  "name": "react project",
+  "endpointPrefix": "api",
+  "latency": 0,
+  "port": 3000,
+  "hostname": "127.0.0.1",
+  "folders": [],
+  "routes": [
+    {
+      "uuid": "3722214e-07fc-4d1d-9964-9638b7b00266",
+      "documentation": "",
+      "method": "post",
+      "endpoint": "signin",
+      "responses": [
+        {
+          "uuid": "7433cfff-aab7-44e3-8f3c-455c0437e917",
+          "body": "{\n  \"sid\": \"{{faker \"datatype.number\"}}\",\n  \"username\": \"{{faker \"name.fullName\"}}\",\n  \"token\": \"{{faker \"datatype.uuid\"}}\"\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [
+            {
+              "key": "",
+              "value": ""
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true
+        }
+      ],
+      "enabled": true,
+      "responseMode": null
+    },
+    {
+      "uuid": "5ae01eb1-6e07-4daf-b2f0-5a03f3d784ba",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "getAccount/:token",
+      "responses": [
+        {
+          "uuid": "2755b44d-c82e-4004-a81f-6b6a14ec0747",
+          "body": "{\n  sid: {{faker \"datatype.number\"}},\n  username: {{faker \"name.fullName\"}},\n  token: {{urlParam \"token\"}}\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true
+        }
+      ],
+      "enabled": true,
+      "responseMode": null
+    }
+  ],
+  "rootChildren": [
+    {
+      "type": "route",
+      "uuid": "3722214e-07fc-4d1d-9964-9638b7b00266"
+    },
+    {
+      "type": "route",
+      "uuid": "5ae01eb1-6e07-4daf-b2f0-5a03f3d784ba"
+    }
+  ],
+  "proxyMode": false,
+  "proxyHost": "",
+  "proxyRemovePrefix": false,
+  "tlsOptions": {
+    "enabled": false,
+    "type": "CERT",
+    "pfxPath": "",
+    "certPath": "",
+    "keyPath": "",
+    "caPath": "",
+    "passphrase": ""
+  },
+  "cors": true,
+  "headers": [
+    {
+      "key": "Content-Type",
+      "value": "application/json"
+    },
+    {
+      "key": "Access-Control-Allow-Origin",
+      "value": "*"
+    },
+    {
+      "key": "Access-Control-Allow-Methods",
+      "value": "GET,POST,PUT,PATCH,DELETE,HEAD,OPTIONS"
+    },
+    {
+      "key": "Access-Control-Allow-Headers",
+      "value": "Content-Type, Origin, Accept, Authorization, Content-Length, X-Requested-With"
+    }
+  ],
+  "proxyReqHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ],
+  "proxyResHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ],
+  "data": []
+}
