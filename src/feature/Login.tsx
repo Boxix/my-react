@@ -1,9 +1,9 @@
-import { useCallback, useContext } from 'react'
+import { useCallback, useContext, useEffect } from 'react'
 import { Location, useLocation, useNavigate } from 'react-router-dom'
 import { Button, Checkbox, Form, Input, notification } from 'antd'
 import { LockOutlined, UserOutlined } from '@ant-design/icons'
 import { AuthContext } from '../context/AuthProvider'
-import { getToken } from '../utils/auth/get-token'
+import request from '@/utils/request'
 
 const useAuth = () => useContext(AuthContext)
 
@@ -12,7 +12,12 @@ function Login() {
   const navigate = useNavigate()
 
   const handleFinished = async (values: Record<string, unknown>) => {
-    const token = await getToken()
+    const res = await request.post('/signin', {
+      ...values,
+    })
+
+    const token = res.data.token
+
     if (values.remember) {
       localStorage.setItem('token', token)
     }
