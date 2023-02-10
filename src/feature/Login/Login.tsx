@@ -1,37 +1,39 @@
 import { useCallback, useContext, useEffect } from 'react'
 import { Location, useLocation, useNavigate } from 'react-router-dom'
+import { useRequest } from 'ahooks'
 import { Button, Checkbox, Form, Input, notification } from 'antd'
 import { LockOutlined, UserOutlined } from '@ant-design/icons'
-import { AuthContext } from '../context/AuthProvider'
-import request from '@/utils/request'
+import { AuthContext } from '../../context/AuthProvider'
+import { signIn } from './service/signin'
 
 const useAuth = () => useContext(AuthContext)
 
 function Login() {
   const auth = useAuth()
   const navigate = useNavigate()
+  const { runAsync } = useRequest(signIn, {
+    manual: true,
+  })
 
   const handleFinished = async (values: Record<string, unknown>) => {
-    const res = await request.post('/signin', {
-      ...values,
-    })
+    runAsync(values).then((data) => {
+      const token = data.token
 
-    const token = res.data.token
+      if (values.remember) {
+        localStorage.setItem('token', token)
+      }
 
-    if (values.remember) {
-      localStorage.setItem('token', token)
-    }
-
-    notification.success({
-      message: '操作成功',
-      description: `${values.username}登录成功`,
-      duration: 1,
-    })
-    setTimeout(() => {
-      auth?.signIn(token, () => {
-        navigate('/', { replace: true })
+      notification.success({
+        message: '操作成功',
+        description: `${values.username}登录成功`,
+        duration: 1,
       })
-    }, 1000)
+      setTimeout(() => {
+        auth?.signIn(token, () => {
+          navigate('/', { replace: true })
+        })
+      }, 1000)
+    })
   }
 
   return (
