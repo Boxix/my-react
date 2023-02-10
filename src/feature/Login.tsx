@@ -35,7 +35,7 @@ function Login() {
   }
 
   return (
-    <div className="max-w-xl ma">
+    <div className="max-w-xl ma" id="signin-form">
       <Form
         className="mt-24"
         name="login"
@@ -50,8 +50,9 @@ function Login() {
           rules={[
             { required: true, message: '请输入登录账号' },
           ]}
+          data-testid="username"
         >
-          <Input prefix={<UserOutlined />}/>
+          <Input prefix={<UserOutlined />} />
         </Form.Item>
         <Form.Item
           label="密码"
@@ -59,6 +60,7 @@ function Login() {
           rules={[
             { required: true, message: '请输入登录密码' },
           ]}
+          data-testid="password"
         >
           <Input.Password prefix={<LockOutlined />} />
         </Form.Item>
@@ -72,7 +74,7 @@ function Login() {
         <Form.Item
           wrapperCol={{ offset: 8, span: 16 }}
         >
-          <Button type="primary" htmlType="submit">登录</Button>
+          <Button type="primary" htmlType="submit" data-testid="siginin">登录</Button>
         </Form.Item>
       </Form>
     </div>
