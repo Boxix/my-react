@@ -44,6 +44,7 @@ function SignIn() {
         labelCol={{ span: 8 }}
         wrapperCol={{ span: 16 }}
         requiredMark={false}
+        initialValues={{ remember: false }}
         onFinish={handleFinished}
       >
         <Form.Item
@@ -74,7 +75,7 @@ function SignIn() {
         <Form.Item
           wrapperCol={{ offset: 8, span: 16 }}
         >
-          <Button type="primary" htmlType="submit" data-testid="siginin">登录</Button>
+          <Button type="primary" htmlType="submit" id="signin-btn">登录</Button>
         </Form.Item>
       </Form>
     </div>

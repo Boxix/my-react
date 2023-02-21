@@ -3,7 +3,7 @@ import { request } from '@/utils/request/axio-config'
 export type TSignIn = {
   username: string
   password: string
-  remember?: boolean
+  remember: boolean
 }
 
 export async function signIn(values: TSignIn): Promise<{ token: string }> {
