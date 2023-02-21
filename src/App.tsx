@@ -2,7 +2,7 @@ import { Route, Routes } from 'react-router-dom'
 import Page404 from './error/404'
 import Main from './layout/Main'
 import Dashboard from './feature/Dashboard/Dashboard'
-import Login from './feature/Login/Login'
+import SignIn from './feature/SignIn/SignIn'
 import Patent from './feature/Patent'
 import AuthProvider from './context/AuthProvider'
 import RequireAuth from './components/RequireAuth'
@@ -20,7 +20,7 @@ function App() {
           <Route path="patent" element={<Patent />}></Route>
         </Route>
 
-        <Route path="/login" element={<Login />}></Route>
+        <Route path="/signin" element={<SignIn />}></Route>
         <Route path="*" element={<Page404 />}></Route>
       </Routes>
     </AuthProvider>

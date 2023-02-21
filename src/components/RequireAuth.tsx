@@ -9,8 +9,8 @@ const RequireAuth = ({ children }: { children: JSX.Element }) => {
   let { token } = auth!
   let location = useLocation()
 
-  if (!token && !location.pathname.includes('login')) {
-    return <Navigate to="/login" state={{ from: location }} replace />
+  if (!token && !location.pathname.includes('signin')) {
+    return <Navigate to="/signin" state={{ from: location }} replace />
   }
 
   return children

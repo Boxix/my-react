@@ -25,7 +25,7 @@ describe('test for RequireAuth', () => {
     signOut: vi.fn(),
   }
 
-  it('direct to /login', () => {
+  it('direct to /signin', () => {
     customRender(<LocationDisplay />, {
       providerProps: {
         ...providerProps,
@@ -33,7 +33,7 @@ describe('test for RequireAuth', () => {
       },
       route: '/'
     })
-    expect(screen.getByTestId('location-display')).toHaveTextContent('/login')
+    expect(screen.getByTestId('location-display')).toHaveTextContent('/signin')
   })
 
   it('pathname equals route', () => {

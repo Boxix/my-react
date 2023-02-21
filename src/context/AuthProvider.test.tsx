@@ -35,8 +35,8 @@ describe('Test for AuthProvider', () => {
       </AuthProvider>
     )
 
-    const loginBtn = screen.getByTestId('signin')
-    fireEvent.click(loginBtn)
+    const signInBtn = screen.getByTestId('signin')
+    fireEvent.click(signInBtn)
     expect(screen.getByTestId('isSignIn')).toHaveTextContent('sign in')
     expect(screen.getByTestId('token')).toHaveTextContent(TOKEN)
   })

@@ -4,18 +4,18 @@ import { useRequest } from 'ahooks'
 import { Button, Checkbox, Form, Input, notification } from 'antd'
 import { LockOutlined, UserOutlined } from '@ant-design/icons'
 import { AuthContext } from '../../context/AuthProvider'
-import { signIn } from './service/signin'
+import { signIn, TSignIn } from './service/signin'
 
 const useAuth = () => useContext(AuthContext)
 
-function Login() {
+function SignIn() {
   const auth = useAuth()
   const navigate = useNavigate()
   const { runAsync } = useRequest(signIn, {
     manual: true,
   })
 
-  const handleFinished = async (values: Record<string, unknown>) => {
+  const handleFinished = async (values: TSignIn) => {
     runAsync(values).then((data) => {
       const token = data.token
 
@@ -40,7 +40,7 @@ function Login() {
     <div className="max-w-xl ma" id="signin-form">
       <Form
         className="mt-24"
-        name="login"
+        name="signin"
         labelCol={{ span: 8 }}
         wrapperCol={{ span: 16 }}
         requiredMark={false}
@@ -52,7 +52,6 @@ function Login() {
           rules={[
             { required: true, message: '请输入登录账号' },
           ]}
-          data-testid="username"
         >
           <Input prefix={<UserOutlined />} />
         </Form.Item>
@@ -62,7 +61,6 @@ function Login() {
           rules={[
             { required: true, message: '请输入登录密码' },
           ]}
-          data-testid="password"
         >
           <Input.Password prefix={<LockOutlined />} />
         </Form.Item>
@@ -83,4 +81,4 @@ function Login() {
   )
 }
 
-export default Login
+export default SignIn
