@@ -1,9 +1,14 @@
-import request from '@/utils/request'
+import { request } from '@/utils/request/axio-config'
 
-export async function signIn(values: Record<string, unknown>): Promise<{ token: string }> {
-  const res = await request('/signin', {
+export type TSignIn = {
+  username: string
+  password: string
+  remember?: boolean
+}
+
+export async function signIn(values: TSignIn): Promise<{ token: string }> {
+  const res = await request.post('/signin', {
     data: values,
-    method: 'post',
   })
   return res.data
 }
