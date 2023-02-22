@@ -16,7 +16,7 @@ const CustomTest = () => {
   )
 }
 
-describe('Test for AuthProvider', () => {
+describe('test for AuthProvider', () => {
   it('show unsign', () => {
     render(
       <AuthProvider>

@@ -30,7 +30,7 @@ vi.mock('react-router-dom', async () => {
   }
 })
 
-describe('Test for SignIn.tsx', () => {
+describe('test for SignIn', () => {
   beforeEach(() => {
     vi.useFakeTimers()
   })

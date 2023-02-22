@@ -11,7 +11,7 @@ const customRender = (ui: ReactNode, { providerProps, ...renderOptions }: { prov
   )
 }
 
-describe('TopNav test', () => {
+describe('test for TopNav', () => {
   let providerProps: IAuthContext
 
   beforeEach(() => {
