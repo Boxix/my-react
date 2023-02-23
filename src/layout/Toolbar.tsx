@@ -23,7 +23,7 @@ function Toolbar() {
   }
 
   return (
-    <div id="topnav-toolbar" className="flex p-2">
+    <div id="topnav-toolbar" className="flex items-center p-2">
       <Dropdown menu={{ items, onClick }} trigger={['click']}>
         <UserOutlined
           className="hover-drop-shadow-md cursor-pointer"
