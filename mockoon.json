@@ -66,6 +66,38 @@
       ],
       "enabled": true,
       "responseMode": null
+    },
+    {
+      "uuid": "f5ee7e9d-1062-48e7-b36a-6bf610890a79",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "chart/:chartId",
+      "responses": [
+        {
+          "uuid": "f80805a8-ff0a-413c-8fc8-e03cb4b10f64",
+          "body": "{\n  \"chartId\": \"{{urlParam 'chartId'}}\",\n  \"data\": [\n    {{#repeat 5 10 comma=true}}\n      {\n        \"genre\": \"{{faker 'name.fullName'}}\",\n        \"sold\": {{int 100 1000}}\n      }\n    {{/repeat}}\n  ]\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [
+            {
+              "key": "",
+              "value": ""
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true
+        }
+      ],
+      "enabled": true,
+      "responseMode": null
     }
   ],
   "rootChildren": [
@@ -76,6 +108,10 @@
     {
       "type": "route",
       "uuid": "5ae01eb1-6e07-4daf-b2f0-5a03f3d784ba"
+    },
+    {
+      "type": "route",
+      "uuid": "f5ee7e9d-1062-48e7-b36a-6bf610890a79"
     }
   ],
   "proxyMode": false,

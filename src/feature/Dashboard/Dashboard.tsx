@@ -1,6 +1,6 @@
 import AuthStatus from "./AuthStatus"
 import clsx from 'clsx'
-import ChartWrapper from "@/components/Chart"
+import ChartWrapper from "@/components/ChartWrapper/Chart"
 
 const card = clsx('p-4 rounded shadow b b-solid m-8')
 
